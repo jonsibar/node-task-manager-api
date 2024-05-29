@@ -1,11 +1,24 @@
 const express = require('express')
 const app = express()
+const taskRoutes = require('./routes/task.routes.js');
+const { sequelize } = require('./models');
+
 const port = 3000
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+app.use('/api/v1/tasks', taskRoutes)
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
+
+
+const start = async () => {
+try {
+  await sequelize.authenticate();
+  console.log(`db connection successful`)
+  app.listen(port, () =>
+    console.log(`Server is listening on port ${port}...`)
+  );
+} catch (error) {
+  console.log(error);
+  }
+};
+
+start();

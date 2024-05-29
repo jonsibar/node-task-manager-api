@@ -2,6 +2,9 @@
 const {
   Model
 } = require('sequelize');
+const taskAttributes = require('./taskAttributes');
+
+
 module.exports = (sequelize, DataTypes) => {
   class Task extends Model {
     /**
@@ -13,10 +16,8 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  Task.init({
-    name: DataTypes.STRING,
-    completed: DataTypes.ENUM
-  }, {
+  Task.init(taskAttributes, 
+    {
     sequelize,
     modelName: 'Task',
   });

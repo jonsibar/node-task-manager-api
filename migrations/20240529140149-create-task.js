@@ -1,5 +1,8 @@
 'use strict';
 /** @type {import('sequelize-cli').Migration} */
+
+const taskAttributes = require('../models/taskAttributes');
+
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('Tasks', {
@@ -9,12 +12,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      name: {
-        type: Sequelize.STRING
-      },
-      completed: {
-        type: Sequelize.ENUM
-      },
+      ...taskAttributes,
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

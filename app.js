@@ -6,9 +6,11 @@ const { sequelize } = require('./models');
 const port = 3000
 
 //middleware
+app.use(express.static('./public'))
 app.use(express.json());
 
 
+//routes
 app.use('/api/v1/tasks', taskRoutes)
 
 

@@ -22,8 +22,8 @@ const getAllTasks = async (req,res) => {
 
 const getTask = async (req,res) => {
     try {
-        taskId = req.params.id
-        const task = await Task.findAll({
+        const taskId = req.params.id
+        const task = await Task.findOne({
             where: {
                 id: taskId
             }
@@ -37,7 +37,8 @@ const getTask = async (req,res) => {
 
 const updateTask = async (req,res) => {
     try {
-        taskId = req.params.id
+        const taskId = req.params.id
+        console.log("taskId update task= ", taskId)
         const task = await Task.findOne({
             where: {
                 id: taskId
@@ -54,7 +55,8 @@ const updateTask = async (req,res) => {
 
 const deleteTask = async (req,res) => {
     try {
-        taskId = req.params.id
+        const taskId = req.params.id
+        console.log(taskId)
         const task = await Task.findOne({
             where: {
                 id: taskId

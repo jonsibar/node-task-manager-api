@@ -1,17 +1,11 @@
-const { DataTypes } = require('sequelize');
-
-
-const taskAttributes = {
+module.exports = (DataTypes) => ({
     name: {
         type: DataTypes.STRING,
         allowNull: false
     },
     completed: {
-    type: DataTypes.ENUM,
-    values: ['active', 'completed'],
-    defaultValue: 'active',
-    allowNull:false
+        type: DataTypes.ENUM,
+        values: ['active', 'completed'],
+        defaultValue: 'active',
     }
-}
-
-module.exports = taskAttributes
+});

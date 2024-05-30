@@ -1,6 +1,7 @@
 'use strict';
 const {
-  Model
+  Model,
+  DataTypes
 } = require('sequelize');
 const taskAttributes = require('./taskAttributes');
 
@@ -16,7 +17,21 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  Task.init(taskAttributes, 
+  Task.init(
+    taskAttributes(DataTypes)
+    // { 
+    // name: {
+    //     type: DataTypes.STRING,
+    //     allowNull: false
+    //   },
+    // completed: {
+    //     type: DataTypes.ENUM,
+    //     values: ['active', 'completed'],
+    //     defaultValue: 'active',
+    //     allowNull: false
+    //   }
+    // }
+    , 
     {
     sequelize,
     modelName: 'Task',

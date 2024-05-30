@@ -35,11 +35,45 @@ const getTask = async (req,res) => {
     }
 }
 
+const updateTask = async (req,res) => {
+    try {
+        taskId = req.params.id
+        const task = await Task.findOne({
+            where: {
+                id: taskId
+            }
+        });
+        await task.update(req.body);
+        await task.save();
+        res.status(200).json({ task })
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Failed to get task' });
+    }
+}
+
+const deleteTask = async (req,res) => {
+    try {
+        taskId = req.params.id
+        const task = await Task.findOne({
+            where: {
+                id: taskId
+            }
+        });
+        await task.destroy();
+        res.status(200).json({ task })
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Failed to get task' });
+    }
+}
+
+
 
 module.exports = {
     createTask,
     getAllTasks,
     getTask,
-    // updateTask,
-    // deleteTask
+    updateTask,
+    deleteTask
 };

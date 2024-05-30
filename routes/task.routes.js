@@ -4,11 +4,13 @@ const taskRoutes = express.Router();
 const {
     createTask,
     getAllTasks,
-    getTask
+    getTask,
+    updateTask,
+    deleteTask
 } = require('../controllers/task.controllers.js');
 
 
 taskRoutes.route('/').post(createTask).get(getAllTasks)
-taskRoutes.route('/:id').get(getTask)
+taskRoutes.route('/:id').get(getTask).patch(updateTask).delete(deleteTask)
 
 module.exports = taskRoutes
